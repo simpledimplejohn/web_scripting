@@ -29,4 +29,10 @@ arr.forEach(name => {
 
 const name = "Action Alert"
 const checkbox = document.querySelector(`a.btn[aria-label*="${encodeURIComponent(name)}"]`);
+checkbox.style.display = 'inline';
+checkbox.setAttribute('aria-checked', 'true');
+
+
+checkbox.style.display = checkbox.style.display === 'none' ? 'inline' : 'none';
+checkbox.parentElement.setAttribute('aria-checked', (checkbox.style.display === 'inline').toString());
 console.log(checkbox)

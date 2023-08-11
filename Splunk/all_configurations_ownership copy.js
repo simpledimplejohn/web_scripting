@@ -4,9 +4,9 @@
 
 
 const name = 'Customer alert'
-let name_link = `[aria-label="/servicesNS/nobody/John/saved/searches/${encodeURIComponent(name)}"]`
+let name_link = `[aria-label*="${encodeURIComponent(name)}"]`
 console.log(name_link)
-let name_link2 = "#control-view7060"
+let name_link2 = "#control-view7056"
 async function performActions() {
     const waitFor = (selector) => new Promise(resolve => {
       const interval = setInterval(() => {
@@ -27,3 +27,14 @@ async function performActions() {
     console.log('Actions completed.');
   }
   performActions();
+
+
+  <a href="#" id="control-view7056" data-name="/servicesNS/nobody/John/saved/searches/Customer%20alert" class="btn"
+    aria-label="/servicesNS/nobody/John/saved/searches/Customer%20alert" role="checkbox" aria-checked="false"><i
+        class="icon-check" style="display:none"></i></a>
+
+
+// The above code works to select the checkbox for a single item in the all configurations page from the devtools console in chrome
+// the problem is some of the fields in the link will change for each item
+// I won't know the values for the following fields: nobody, John 
+// for data-name="/servicesNS/nobody/John/saved/searches/Customer%20alert"

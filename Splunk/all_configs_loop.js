@@ -1,14 +1,14 @@
 // this script works from inside the all configurations page once logged in 
 // http://localhost:8000/en-US/manager/launcher/bulkreassign?app=John&owner=&count=100&offset=0&search=&appOnly=true&sortDir=&sortKey=&orphaned=false&configType=savedsearch
-// this works for a single item
 
 
-const nameArr = ['Customer alert']
+
+const nameArr = ['Another Alert', 'Customer alert', 'Errors', 'More-Strange--* text ##', 'Still Another Alert', 'WEIrd 12345 "*THIS STUFF*" in here']
 
 
 let name_link = `[aria-label*="${encodeURIComponent(nameArr[0])}"]`
-console.log(name_link)
-let name_link2 = "#control-view7056"
+console.log(nameArr[0])
+
 async function performActions() {
     const waitFor = (selector) => new Promise(resolve => {
       const interval = setInterval(() => {
@@ -36,7 +36,4 @@ async function performActions() {
         class="icon-check" style="display:none"></i></a>
 
 
-// The above code works to select the checkbox for a single item in the all configurations page from the devtools console in chrome
-// the problem is some of the fields in the link will change for each item
-// I won't know the values for the following fields: nobody, John 
-// for data-name="/servicesNS/nobody/John/saved/searches/Customer%20alert"
+// Now I need to loop through the nameArr array and perform the same action for each item in the array

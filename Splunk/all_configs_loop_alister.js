@@ -7,7 +7,7 @@ const nameArr2 = ['Action Alert','Another Alert', 'Customer alert', 'Errors', 'S
 const nameArr1 = ['Action Alert','Another Alert', 'Customer alert', 'Errors', 'Still Another Alert', 'TEST ALERT', 'TEST']
 
 async function performActions() {
-  const waitFor = (selector) => new Promise((resolve, reject) => {
+  const waitFor = (alertName) => new Promise((resolve, reject) => {
     let attempts = 1
     const interval = setInterval(() => {
       if(attempts > 5 ) {
@@ -15,7 +15,14 @@ async function performActions() {
           reject('too many attempts');
       }
       console.log(`trying to find element again, attempt: ${attempts++}`)
-      const element = document.querySelector(selector);
+      const cells = document.querySelectorAll('td.cell-name');
+      // ['Another Alert', 'my weird alert text', 'some other table alert']
+      // objective, have the text available as a variable
+      // find cell with the text that matches alertName
+      for(const cell of cells) {
+        
+      }
+
       if (element) {
         clearInterval(interval);
         resolve(element);
@@ -23,13 +30,14 @@ async function performActions() {
     }, 100);
   });
 
-  const clickAndWait = async (selector) => {
-    const element = await waitFor(selector);
+  const clickAndWait = async (alertName) => {
+    const element = await waitFor(alertName);
     element.click();
   };
+
   try {
     for (const name of nameArr) {
-      const nameSelector = `[aria-label*="${encodeURIComponent(name)}"]`;
+      const nameSelector = name;
       console.log(`name output ${nameSelector}`);
       await clickAndWait(nameSelector);
       console.log('...');

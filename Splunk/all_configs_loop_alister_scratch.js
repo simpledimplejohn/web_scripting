@@ -38,13 +38,14 @@ const getNames = async (counter = 0) => {
       return getNames(counter)
     }
 
-    console.log("failed to find table")
+    console.log("failed to find table after 5 tries")
   }
 
 }
 
 const main = async () => {
   let finished = await getNames();
+  // this returns the list of names
   console.log(finished)
 }
 

@@ -1,4 +1,4 @@
-// checkbox with array 
+// original attempt
 const arr = ["Action Alert", "Customer alert", "Errors", "potato"];
 
 const cells = document.querySelectorAll('td.cell-name');

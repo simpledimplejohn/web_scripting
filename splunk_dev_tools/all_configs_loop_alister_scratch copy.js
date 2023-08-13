@@ -2,7 +2,7 @@
 //  http://localhost:8000/en-US/account/login
 // http://localhost:8000/en-US/manager/launcher/bulkreassign?app=John&owner=&count=100&offset=0&search=&appOnly=true&sortDir=&sortKey=&orphaned=false&configType=savedsearch
 
-const nameArr = ['Another Alert', 'Customer alert', 'Errors', 'More-Strange--* text ##', 'Still Another Alert']
+const nameArr = ['Another Alert', 'Customer alert',  'Still Another Alert']
 
 // collect all the names from thier tags into an array 
 // check that array against the provided array
@@ -14,39 +14,43 @@ const nameArr = ['Another Alert', 'Customer alert', 'Errors', 'More-Strange--* t
 // find the associated button to click
 // click the button 
 
-// example of matching array function
-const array1 = [1, 2, 3, 4, 5]; // sortedNamesOnPage
-const array2 = [3, 4, 5, 6, 7]; // nameArr
-
-const matchingItems = [];
-
-for (const item1 of array1) {
-  if (array2.includes(item1)) {
-    matchingItems.push(item1);
-  }
-}
-
-console.log("Matching items:", matchingItems);
-
 const waitFor = (time = 1000) => new Promise((resolve, reject) => {
   setTimeout(resolve, time);
 })
+
+const clickCheckBox = async (sortedNamesOnPage) => {
+  console.log("potato", sortedNamesOnPage);
+    for(const name of nameArr) {
+      if (sortedNamesOnPage.includes(name)) {
+        console.log("found name", name);
+        // how do I find the aria-label that matches the name? by looking for the closets cell element?
+
+        
+
+        // const nameSelector = `[aria-label*="${encodeURIComponent(name)}"]`;
+        // console.log(`name output ${nameSelector}`);
+      }
+
+      // await clickAndWait(nameSelector);
+      console.log('..current stopping point need to sort.');
+    } 
+}
 
 const getNames = async (counter = 0) => {
   await waitFor();
 
   const table = document.querySelector('tbody');
   if (table) {
-    const documentNames = document.querySelectorAll('td.cell-name');
-    // console.log(documentNames);
-    const alertNames = []
-    for (const name of documentNames) {
+    const cell_names = document.querySelectorAll('td.cell-name');
+    // console.log(cell_names);
+    const cellNamesText = []
+    for (const name of cell_names) {
       console.log(name.innerText);
-      alertNames.push(name.innerText);
+      cellNamesText.push(name.innerText);
 
     }
-    console.log(alertNames);
-    return alertNames;
+    console.log("td.cell-name",cellNamesText);
+    return cellNamesText;
   } else {
     if (counter++ > 5) {
       return getNames(counter)
@@ -58,9 +62,14 @@ const getNames = async (counter = 0) => {
 }
 
 const main = async () => {
-  let finished = await getNames();
+  let sortedNamesOnPage = await getNames();
+
+  console.log("main-sortedNamesOnPage", sortedNamesOnPage);
+  
+  let clickCheckBoxes = await clickCheckBox(sortedNamesOnPage);
+  clickCheckBoxes;
   // this returns the list of names
-  console.log(finished)
+  console.log("end of main ")
 }
 
 main()

@@ -1,3 +1,4 @@
+// a starting point to rebuild this from scratch using Alisters method
 // this script works from inside the all configurations page once logged in 
 //  http://localhost:8000/en-US/account/login
 // http://localhost:8000/en-US/manager/launcher/bulkreassign?app=John&owner=&count=100&offset=0&search=&appOnly=true&sortDir=&sortKey=&orphaned=false&configType=savedsearch

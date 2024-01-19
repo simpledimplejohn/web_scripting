@@ -1,7 +1,7 @@
 // this version will only work virtually 
 // but it does find the cell name closests 
 const nameArr1 = ['Action Alert', 'Another Alert', 'Customer alert', 'Errors', 'Still Another Alert', 'TEST', 'TEST ALERT', 'TEST ALERT ALERT'];
-const nameArr = ['Action Alert', 'Another Alert', 'Customer alert', 'Errors', 'More-Strange--* text ##', 'Still Another Alert', 'TEST', 'TEST ALERT', 'TEST ALERT ALERT', 'WEIrd 12345 "*THIS STUFF*" in here']
+const nameArr = ['Action Alert', 'Another Alert', 'Customer alert', 'Errors', 'More-Strange--* text ##', 'Still Another Alert', 'TEST', 'TEST ALERT', 'TEST ALERT ALERT', 'WEIrd 12345 "*THIS STUFF*" in here', 'potato']
 
 const findAndClickCheckbox = async () => {
   for (const name of nameArr) {
@@ -28,7 +28,11 @@ const findAndClickCheckbox = async () => {
         if (checkboxLink) {
           console.log(`Checkbox link element for ${name}:`, checkboxLink);
           // Click the checkbox link if needed
-          // checkboxLink.click();
+          
+          
+          // checkboxLink.style.display = checkboxLink.style.display === 'none' ? 'inline' : 'none';
+          // checkboxLink.parentElement.setAttribute('aria-checked', (checkboxLink.style.display === 'inline').toString());
+          checkboxLink.click();
         } else {
           console.log(`Checkbox link not found for ${name}.`);
         }
@@ -45,18 +49,6 @@ findAndClickCheckbox();
 
 
 
-/*
-const cells = document.querySelectorAll('td.cell-name');
-cells.forEach(cell => {
-  if (cell.textContent.includes(name)) {
-    const row = cell.closest('tr');
-    const checkbox = row.querySelector(`a.btn[aria-label*="${encodeURIComponent(name)}"] .icon-check`);
-    if (checkbox) {
-      checkbox.style.display = checkbox.style.display === 'none' ? 'inline' : 'none';
-      checkbox.parentElement.setAttribute('aria-checked', (checkbox.style.display === 'inline').toString());
-    }
 
-    found = true;
-  }
-});
-*/
+
+
